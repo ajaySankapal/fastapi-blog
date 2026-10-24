@@ -25,3 +25,6 @@ the dynamic data that we need to create this html page that we can pass in the t
 def home(request:Request):
     return templates.TemplateResponse(request,"home.html")
 
+
+for the templates we can use the template inheritance as well -- we can define some common layout and other templates can reuse that layout
+
