@@ -1,0 +1,27 @@
+@app.get("/") - get endpoint it is decorator, below that we can define controller which will be invoked when we hit this '/' home route
+
+@app.get("/")
+def home():
+    return {"message":"hello world"}
+
+to send the html response directly we can use the response class of HTMLResponse that we can import from the fastapi.responses
+
+@app.get("/html",response_class=HTMLResponse)
+return f"<h1>{posts[0]["title"]}</h1>"
+# to send the dynamic value we can use f"string" it is similar to template literal in javascript
+
+
+
+jinja2 - is python template engine that is used to generate dynamic HTML pages, in fastapi it is useful for server-rendered html pages
+we can import this from fastapi.templating Jinja2Templates
+we have to follow this standard that we have to create the 'templates' folder in the root directory
+
+we have to write the code in main.py to tell the application where to find this templates in the directory
+templates = Jinja2Templates(directory="templates")
+in the templates we will create html files
+in the controller we have to take the request parameter also as jinja2 require that and we can return the template response by passing that request parameter that we are getting in the controller with the file name in string
+the dynamic data that we need to create this html page that we can pass in the third arguement in form of dictionary
+@app.get("/")
+def home(request:Request):
+    return templates.TemplateResponse(request,"home.html")
+
